@@ -1,5 +1,5 @@
-module github.com/lukasjarosch/go-docx
+module github.com/formuziek/go-docx
 
-go 1.14
+go 1.19
 
 require golang.org/x/net v0.0.0-20200925080053-05aa5d4ee321
