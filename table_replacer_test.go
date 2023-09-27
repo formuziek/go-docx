@@ -10,22 +10,22 @@ func TestTableReplacer_Replace(t *testing.T) {
 	replaceMap := [][]TablePlaceholder{
 		{
 			{
-				key:   "Name",
-				value: "John Doe",
+				Key:   "Name",
+				Value: "John Doe",
 			},
 			{
-				key:   "Value",
-				value: "42",
+				Key:   "Value",
+				Value: "42",
 			},
 		},
 		{
 			{
-				key:   "Name",
-				value: "Jane Doe",
+				Key:   "Name",
+				Value: "Jane Doe",
 			},
 			{
-				key:   "Value",
-				value: "43",
+				Key:   "Value",
+				Value: "43",
 			},
 		},
 	}

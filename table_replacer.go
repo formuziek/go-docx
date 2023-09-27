@@ -17,8 +17,8 @@ type TableReplacer struct {
 }
 
 type TablePlaceholder struct {
-	key   string
-	value string
+	Key   string
+	Value string
 }
 
 func NewTableReplacer(docBytes []byte) *TableReplacer {
@@ -40,7 +40,7 @@ func (r *TableReplacer) Replace(tablePrefix string, placeholders [][]TablePlaceh
 	// Matches any XML table containing the first tag.
 	// Table must have two rows, where one is header and the other is a template for the rest of the rows.
 	// Header will remain, template will be replaced with the rest of the rows.
-	re := regexp.MustCompile(fmt.Sprintf(`(?s)<w:tbl>.*?<w:tr>.*?</w:tr>.*?(<w:tr>.*?\[%s\.%s\].*?</w:tr>).*?</w:tbl>`, tablePrefix, firstPlaceholder[0].key))
+	re := regexp.MustCompile(fmt.Sprintf(`(?s)<w:tbl>.*?<w:tr>.*?</w:tr>.*?(<w:tr>.*?\[%s\.%s\].*?</w:tr>).*?</w:tbl>`, tablePrefix, firstPlaceholder[0].Key))
 	row := re.FindSubmatch(r.document)
 	if len(row) == 2 {
 		foundRowTemplate = true
@@ -57,7 +57,7 @@ func (r *TableReplacer) Replace(tablePrefix string, placeholders [][]TablePlaceh
 	for i := 0; i < len(placeholders); i++ {
 		outputRow := rowTemplate
 		for j := 0; j < len(placeholders[i]); j++ {
-			outputRow = bytes.Replace(outputRow, []byte(fmt.Sprintf("[%s.%s]", tablePrefix, placeholders[i][j].key)), []byte(placeholders[i][j].value), -1)
+			outputRow = bytes.Replace(outputRow, []byte(fmt.Sprintf("[%s.%s]", tablePrefix, placeholders[i][j].Key)), []byte(placeholders[i][j].Value), -1)
 		}
 		outputRows = append(outputRows, outputRow...)
 	}
