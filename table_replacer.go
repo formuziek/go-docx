@@ -75,3 +75,9 @@ func (r *TableReplacer) Replace(tablePrefix string, placeholders [][]TablePlaceh
 	}
 	return nil
 }
+
+// Bytes returns the document bytes.
+// If called after Replace(), the bytes will be modified.
+func (r *TableReplacer) Bytes() []byte {
+	return r.document
+}
